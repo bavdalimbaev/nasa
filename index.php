@@ -1,72 +1,13 @@
-<?php $files = glob("nasa_image/*.*"); ?>
-<!DOCTYPE html>
-<html lang="en">
+<?php
+ini_set('date.timezone', 'Asia/Bishkek');
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="assets/css/bootstrap.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick-theme.min.css">
-	<title>Slick + Bootstrap</title>
-	<style>
-		.carousel {
-			width: 90%;
-			margin: 0px auto;
-		}
+ini_set('display_errors', 1);
 
-		.slick-slide {
-			margin: 10px;
-		}
+error_reporting(0);
+session_start();
 
-		.slick-slide img {
-			width: 100%;
-			border: 2px solid #fff;
-		}
-	</style>
-</head>
+define('ROOT', dirname(__FILE__));
+require_once(ROOT . '/components/Autoload.php');
 
-<body id='<?= count($files) ?>' class='bg-success'>
-
-	<div class="container">
-
-		<h2 class="mt-4 text-center text-white">Avdalimbaev Bekjan</h2>
-		<h2 class="mt-4 text-center text-white">Slick Test Wok</h2>
-
-		<div class="carousel">
-			<?php foreach ($files as $value) : ?>
-				<div class="float-right"><img src="<?= $value ?>" alt="" width="100%" class="img-card w-100"></div>
-			<?php endforeach ?>
-		</div>
-
-	</div>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.js"></script>
-
-	<script>
-		$(document).ready(function() {
-			let cnt = $('body').attr('id');
-			if (cnt == 0) {
-				$.ajax({
-					url: "all_upload.php",
-					method: "get"
-				})
-			} else {
-				$.ajax({
-					url: "today_upload.php",
-					method: "get"
-				})
-			}
-		});
-
-		$('.carousel').slick({
-			slidesToShow: 1,
-			dots: true,
-			centerMode: true,
-			autoplay: true
-		});
-	</script>
-</body>
-
-</html>
+$router = new Router();
+$router->run();
